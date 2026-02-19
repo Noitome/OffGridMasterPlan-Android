@@ -1,0 +1,147 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+@layer base {
+  :root {
+    /* Eco-Industrial Theme: Light Mode */
+    /* Background: Warm Canvas / Off-White */
+    --background: 40 20% 98%; 
+    /* Foreground: Deep Slate / Charcoal */
+    --foreground: 215 25% 15%; 
+
+    /* Card: White */
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+
+    /* Popover: White */
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+
+    /* Primary: Deep Forest Green (Nature/Reliability) */
+    --primary: 143 50% 25%;
+    --primary-foreground: 0 0% 98%;
+
+    /* Secondary: Safety Orange / Amber (Industrial/Action) */
+    --secondary: 35 100% 50%;
+    --secondary-foreground: 0 0% 9%;
+
+    /* Muted: Sage Grey (Technical/Background) */
+    --muted: 140 10% 92%;
+    --muted-foreground: 215 20% 40%;
+
+    /* Accent: Light Moss (Highlight) */
+    --accent: 142 30% 90%;
+    --accent-foreground: 143 50% 25%;
+
+    /* Destructive: Signal Red */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Borders: Soft Earthy Grey */
+    --border: 215 15% 90%;
+    --input: 215 15% 90%;
+    --ring: 143 50% 25%;
+
+    --radius: 0.5rem;
+    
+    /* Charts remain similar but tuned to earth tones */
+    --chart-1: 143 50% 45%; /* Green */
+    --chart-2: 35 90% 45%;  /* Orange */
+    --chart-3: 200 60% 40%; /* Water Blue */
+    --chart-4: 43 74% 66%;  /* Sun Yellow */
+    --chart-5: 27 87% 67%;  /* Earth Brown */
+  }
+
+  .dark {
+    /* Eco-Industrial Theme: Dark Mode */
+    /* Background: Deep Charcoal / Night */
+    --background: 220 40% 10%;
+    /* Foreground: Off-White */
+    --foreground: 40 10% 98%;
+
+    /* Card: Dark Slate */
+    --card: 220 35% 13%;
+    --card-foreground: 40 10% 98%;
+
+    /* Popover: Dark Slate */
+    --popover: 220 35% 13%;
+    --popover-foreground: 40 10% 98%;
+
+    /* Primary: Lighter Forest Green (Visibility) */
+    --primary: 142 60% 45%;
+    --primary-foreground: 0 0% 9%;
+
+    /* Secondary: Bright Amber */
+    --secondary: 35 100% 50%;
+    --secondary-foreground: 0 0% 9%;
+
+    /* Muted: Dark Grey */
+    --muted: 215 20% 20%;
+    --muted-foreground: 215 20% 65%;
+
+    /* Accent: Dark Moss */
+    --accent: 142 30% 20%;
+    --accent-foreground: 40 10% 98%;
+
+    /* Destructive */
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Borders */
+    --border: 215 20% 20%;
+    --input: 215 20% 20%;
+    --ring: 142 60% 45%;
+    
+    --chart-1: 142 60% 55%;
+    --chart-2: 35 90% 55%;
+    --chart-3: 200 70% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    display: block !important;
+    place-items: normal !important;
+    min-height: auto !important;
+  }
+}
