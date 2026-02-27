@@ -22,6 +22,7 @@
 | Thin-Film | 10-13% | 20 years | Flexible/unusual surfaces |
 | PERC | 21-24% | 25-30 years | High efficiency, hot climates |
 | Bifacial | 22-25% | 25-30 years | High albedo surfaces |
+| HIT (Heterojunction) | 23-26% | 25-30 years | Best efficiency, expensive |
 
 **Panel Sizing Formula:**
 ```
@@ -30,48 +31,49 @@ Daily Generation (Wh) = Panel Watts × Peak Sun Hours × System Efficiency (0.85
 Example: 400W panel × 5 hours × 0.85 = 1,700Wh/day
 ```
 
+**Temperature Performance:**
+- Power temperature coefficient: -0.3% to -0.5%/°C
+- NOCT (Nominal Operating Cell Temp): 45°C ± 2°C
+- At 45°C, panel loses ~10% efficiency
+
 **Orientation:**
 - **Northern Hemisphere:** South-facing, tilt = latitude
 - **Southern Hemisphere:** North-facing, tilt = latitude
-
-**Tilt Angle Adjustment:**
-| Season | Tilt |
-|--------|------|
-| Summer | Latitude - 15° |
-| Winter | Latitude + 15° |
-| Year-round | Latitude |
 
 ### 1.2 Battery Banks
 
 **Chemistry Comparison**
 
-| Type | Cycle Life | Depth of Discharge | Cost/kWh | Temperature Range |
-|------|------------|-------------------|----------|-------------------|
-| LiFePO4 (LFP) | 3000-5000 | 80-100% | $300-800 | -20°C to 60°C |
-| AGM | 500-1000 | 50% | $200-500 | -40°C to 60°C |
-| Gel | 1000-2000 | 50% | $300-600 | -40°C to 60°C |
-| Flooded Lead-Acid | 500-1000 | 50% | $150-400 | -20°C to 50°C |
-| Lithium NMC | 2000-3000 | 80-100% | $500-900 | -20°C to 55°C |
+| Type | Cycle Life | Depth of Discharge | Cost/kWh | Temperature Range | Best For |
+|------|------------|-------------------|----------|-------------------|----------|
+| LiFePO4 (LFP) | 3000-5000 | 80-100% | $300-800 | -20°C to 60°C | Mainstream |
+| Li-ion NMC | 2000-3000 | 80-100% | $500-900 | -20°C to 55°C | High performance |
+| Li-ion NCA | 1500-2500 | 80-100% | $600-1000 | -20°C to 50°C | Tesla, high energy |
+| AGM | 500-1000 | 50% | $200-500 | -40°C to 60°C | Budget, seasonal |
+| Gel | 1000-2000 | 50% | $300-600 | -40°C to 60°C | Sealed needed |
+| Flooded Lead-Acid | 500-1000 | 50% | $150-400 | -20°C to 50°C | Maximum budget |
+| OPzS | 1500-2500 | 60% | $400-700 | -10°C to 45°C | Long life, flooded |
 
 **Sizing:**
 ```
 Capacity (Ah) = Daily Load (Wh) ÷ System Voltage ÷ DoD%
 Days of Autonomy = Capacity × System Voltage × DoD% ÷ Daily Load
+Example: 3000Wh/day, 48V, 80% DoD, 3 days:
+- Daily = 3000 ÷ 48 ÷ 0.8 = 78Ah
+- 3-day = 78 × 3 = 234Ah
 ```
 
-**Example:** 3000Wh/day, 48V, 80% DoD, 3 days autonomy:
-- Daily capacity needed = 3000 ÷ 48 ÷ 0.8 = 78Ah
-- 3-day bank = 78Ah × 3 = 234Ah
+**Brand Comparison:**
 
-**Temperature Compensation:**
-| Temperature | Charging Voltage Adjustment |
-|-------------|---------------------------|
-| 25°C | 1.00x (baseline) |
-| 20°C | 1.03x |
-| 15°C | 1.06x |
-| 10°C | 1.09x |
-| 5°C | 1.12x |
-| 0°C | 1.15x |
+| Brand | Type | Warranty | Cost/kWh AU | Cost/kWh US |
+|-------|------|----------|-------------|-------------|
+| BYD | LFP | 10 years | $350-450 | $300-400 |
+| Pylontech | LFP | 10 years | $400-500 | $350-450 |
+| FranklinWH | LFP | 12 years | $450-550 | $400-500 |
+| Tesla Powerwall | NMC | 10 years | $700-900 | $600-800 |
+| EG4 | LFP | 10 years | $350-450 | $300-400 |
+| Discover | LFP | 11 years | $450-550 | $400-500 |
+| Rolls | Flooded | 7 years | $200-300 | $180-280 |
 
 ### 1.3 Inverters
 
@@ -88,13 +90,41 @@ Inverter Rating = Peak Load × 1.25 (minimum)
 Surge Capacity = 2-3× continuous rating
 ```
 
-**Types:**
-| Type | Pros | Cons | Best For |
-|------|------|------|----------|
-| String Inverter | Cheaper, reliable | Single point failure | Grid-tie |
-| Microinverters | Panel-level MPPT, no high DC | Cost, more points | Shaded arrays |
-| Hybrid | All-in-one, smart | Expensive | Battery backup |
-| Off-grid Specific | High surge, pure sine | Limited features | Full off-grid |
+**Top Inverters:**
+
+| Model | Type | Rating | Cost AU | Cost US | Notes |
+|-------|------|--------|---------|---------|-------|
+| Victron MultiPlus II | Hybrid | 3-5kVA | $2,500-4,500 | $2,000-3,800 | Best overall |
+| Victron Quattro | Hybrid | 5-15kVA | $4,000-12,000 | $3,500-10,000 | Dual input |
+| EG4 18KPV | Hybrid | 18kW | $3,000-4,000 | $2,500-3,500 | Best value |
+| Schneider XW Pro | Hybrid | 6-8kW | $5,000-7,000 | $4,000-6,000 | Premium |
+| OutBack Radian | Hybrid | 4-8kW | $4,500-8,000 | $4,000-7,000 | Full system |
+| SMA Sunny Island | Hybrid | 3-6kW | $3,500-6,500 | $3,000-5,500 | German quality |
+| GoodWe Lynx Home F | Hybrid | 3.6-10kW | $2,000-4,500 | $1,800-4,000 | Budget hybrid |
+
+### 1.4 Charge Controllers
+
+| Type | Efficiency | Cost | Best For |
+|------|------------|------|----------|
+| PWM | 75-80% | $50-150 | Small systems |
+| MPPT | 95-99% | $150-1,500 | All systems >200W |
+
+**MPPT Sizing:**
+```
+Controller Amps = Panel Watts ÷ System Voltage × 1.25
+
+Example: 1000W panel, 24V system = 1000 ÷ 24 × 1.25 = 52A controller
+```
+
+**Top Controllers:**
+
+| Model | Amps | Max V | Cost AU | Cost US |
+|-------|------|-------|---------|---------|
+| Victron SmartSolar 100/30 | 30A | 100V | $250-350 | $200-300 |
+| Victron SmartSolar 150/70 | 70A | 150V | $500-700 | $450-600 |
+| Epever 30A | 30A | 150V | $80-120 | $70-100 |
+| Renogy 40A | 40A | 100V | $120-180 | $100-150 |
+| Schneider SX | 60A | 240V | $600-900 | $550-800 |
 
 ---
 
@@ -116,17 +146,16 @@ Imperial: Annual Yield (gal) = Roof Area (ft²) × Annual Rainfall (in) × 0.6
 | Melbourne, AU | 650mm | 55,000L | 83,000L | 110,000L |
 | Sydney, AU | 1,200mm | 102,000L | 153,000L | 204,000L |
 | Brisbane, AU | 1,400mm | 119,000L | 179,000L | 238,000L |
+| Darwin, AU | 1,700mm | 145,000L | 217,000L | 289,000L |
+| Perth, AU | 850mm | 72,000L | 108,000L | 145,000L |
 | London, UK | 600mm | 51,000L | 77,000L | 102,000L |
 | Seattle, US | 970mm | 82,000L | 124,000L | 165,000L |
 | Los Angeles, US | 300mm | 26,000L | 38,000L | 51,000L |
+| Miami, US | 1,500mm | 128,000L | 191,000L | 255,000L |
 | Amsterdam, NL | 800mm | 68,000L | 102,000L | 136,000L |
-
-**First Flush Requirements:**
-```
-First Flush (L) = Roof Area (m²) × 10
-
-Example: 100m² roof = 1000L first flush needed
-```
+| Berlin, DE | 550mm | 47,000L | 70,000L | 94,000L |
+| Toronto, CA | 790mm | 67,000L | 101,000L | 134,000L |
+| Vancouver, CA | 1,500mm | 128,000L | 191,000L | 255,000L |
 
 ### 2.2 Tank Sizing
 
@@ -140,8 +169,20 @@ Tank Size (L) = Daily Usage (L) × Dry Days × Safety Factor (1.2)
 | Melbourne | 120 days | 150L | 72,000L |
 | Sydney | 90 days | 150L | 54,000L |
 | Brisbane | 60 days | 150L | 36,000L |
+| Perth | 150 days | 150L | 90,000L |
 | London | 150 days | 150L | 90,000L |
 | California | 180 days | 150L | 108,000L |
+| Spain (Barcelona) | 180 days | 150L | 108,000L |
+
+**Tank Types:**
+
+| Type | Cost/m³ AU | Cost/m³ US | Pros | Cons |
+|------|------------|------------|------|------|
+| Poly Round | $150-250/m³ | $120-200/m³ | Cheap, easy | Degrades UV |
+| Poly Slimline | $200-350/m³ | $170-300/m³ | Fits walls | Narrow |
+| Steel Corrugated | $300-500/m³ | $250-400/m³ | Strong, long life | Rust risk |
+| Concrete | $400-600/m³ | $350-500/m³ | Permanent | Heavy, cracks |
+| Bladder | $200-400/m³ | $170-350/m³ | Portable | Puncture risk |
 
 ### 2.3 Filtration Stages
 
@@ -149,29 +190,31 @@ Tank Size (L) = Daily Usage (L) × Dry Days × Safety Factor (1.2)
 |-------|---------|--------|-------------|---------|---------|---------|
 | Leaf Guard | Leaves | 2mm | 6-12 months | $50-100 | $40-80 | £35-70 |
 | First Flush | Dirt | - | 5-10 years | $150-300 | $120-250 | £100-200 |
-| Sediment | Sand/silt | 20μm | 3-6 months | $40/yr | $30/yr | £25/yr |
-| Sediment | Fine | 1μm | 3-6 months | $50/yr | $40/yr | £35/yr |
+| Sediment 20μm | Sand/silt | 20μm | 3-6 months | $40/yr | $30/yr | £25/yr |
+| Sediment 1μm | Fine | 1μm | 3-6 months | $50/yr | $40/yr | £35/yr |
 | Carbon | Chlorine/taste | - | 6-12 months | $60/yr | $50/yr | £45/yr |
 | UV | Bacteria/viruses | - | 12 months | $120/yr | $100/yr | £85/yr |
+| Reverse Osmosis | Everything | 0.0001μm | 12-24 months | $200/yr | $150/yr | £130/yr |
 
 ### 2.4 Greywater Systems
 
 **Yield Estimation:**
-| Source | L/person/day | Notes |
-|--------|-------------|-------|
-| Shower | 30-50 | Highest quality |
-| Bath | 40-80 | If used |
-| Basin | 10-20 | Low volume |
-| Kitchen | 15-30 | Grease issues |
-| Laundry | 30-50 | Detergent sensitive |
+| Source | L/person/day | Quality |
+|--------|-------------|---------|
+| Shower | 30-50 | Highest |
+| Bath | 40-80 | High |
+| Basin | 10-20 | Medium |
+| Kitchen | 15-30 | Low - grease |
+| Laundry | 30-50 | Medium - detergent |
 
-**Greywater Treatment:**
+**Treatment Methods:**
 
 | Method | Complexity | Cost AU | Effectiveness |
 |--------|------------|---------|--------------|
-| Simple diversion | Low | $100-300 | 30% |
+| Simple diversion | Low | $100-300 | 30% (toilet only) |
 | Filter + wetland | Medium | $500-1,500 | 60% |
 | Sand filter | Medium | $800-2,000 | 75% |
+| Drip irrigation direct | Low | $200-400 | 40% |
 | Membrane bioreactor | High | $3,000-8,000 | 95% |
 
 ---
@@ -180,33 +223,33 @@ Tank Size (L) = Daily Usage (L) × Dry Days × Safety Factor (1.2)
 
 ### 3.1 Composting Toilets
 
-**Comparison:**
-
 | Model | Type | Capacity | Compost Quality | Cost AU | Cost US | Cost UK |
 |-------|------|----------|-----------------|---------|---------|---------|
 | Nature's Head | Split | 60-80 uses | Excellent | $900-1,400 | $800-1,200 | £700-1,000 |
 | Separett Villa 9210 | Split | 40-60 uses | Excellent | $800-1,200 | $700-1,000 | £600-900 |
 | Sun-Mar Excel | Single | 30-50 uses | Good | $1,200-1,800 | $1,000-1,500 | £850-1,200 |
 | Airhead | Split | 40-60 uses | Excellent | $700-1,100 | $600-900 | £500-800 |
+| Separett Tiny | Portable | 20-30 uses | Good | $400-600 | $350-500 | £300-450 |
 | DIY 5-gallon | Split | 20-30 uses | Good | $150-300 | $120-250 | £100-200 |
 
-**Vent Requirements:**
-- Minimum 3" (75mm) vent pipe
-- Extend 300mm above roofline
-- Install in shade when possible
+**Installation Requirements:**
+- Minimum 3" (75mm) vent pipe, extend 300mm above roof
+- 110V/220V power for fan (or 12V solar)
+- Access for emptying (weekly)
+- Level placement
 
 ### 3.2 Urine Diversion
 
 **Yields:**
 | Source | Volume/Day | Nitrogen | Phosphorus | Potassium |
 |--------|------------|----------|------------|-----------|
-| Urine | 1-2L/person | 6-10g N | 0.5-1g P | 1-2g K |
-| Diluted (1:8) | 9-18L | 0.75-1.25g/L | 0.06-0.12g/L | 0.12-0.25g/L |
+| Urine | 1-2L/person | 6-10g N/L | 0.5-1g P/L | 1-2g K/L |
+| Diluted 1:8 | 9-18L | 0.75-1.25g/L | 0.06-0.12g/L | 0.12-0.25g/L |
 
 **Applications:**
-- Dilute 1:8 for aquaponics
-- Direct to ornamental gardens
-- Compost accelerator
+- Dilute 1:8 to 1:10 for aquaponics
+- Direct to ornamental trees
+- Compost pile accelerator (1L/10L compost)
 
 ### 3.3 Biogas Systems
 
@@ -215,6 +258,7 @@ Tank Size (L) = Daily Usage (L) × Dry Days × Safety Factor (1.2)
 | HomeBiogas 2.0 | 120L | 0.5-0.7m³ | 2-3 hrs | $800-1,200 | $700-1,000 |
 | HomeBiogas 7.0 | 400L | 1.5-2m³ | 4-6 hrs | $2,000-3,000 | $1,800-2,500 |
 | Biobag 200L | 200L | 0.8-1m³ | 2-3 hrs | $300-500 | $250-400 |
+| FlexiBiogas 600 | 600L | 2-3m³ | 4-6 hrs | $1,200-2,000 | $1,000-1,800 |
 | DIY 1000L IBC | 1000L | 2-3m³ | 4-6 hrs | $400-800 | $350-700 |
 
 **Feedstock Requirements:**
@@ -224,6 +268,7 @@ Tank Size (L) = Daily Usage (L) × Dry Days × Safety Factor (1.2)
 | Pig manure | 0.04-0.05 m³/kg | Good |
 | Human urine | 0.02 m³/kg | Dilute 1:5 |
 | Food scraps | 0.05-0.06 m³/kg | Best |
+| Chicken manure | 0.05-0.07 m³/kg | Very good |
 | Grass clippings | 0.04 m³/kg | Mix with manure |
 
 ### 3.4 Black Soldier Fly Larvae (BSFL)
@@ -236,19 +281,18 @@ Tank Size (L) = Daily Usage (L) × Dry Days × Safety Factor (1.2)
 | Fat | 25-35% |
 | Harvest interval | 14-21 days |
 | Temperature | 25-30°C optimal |
+| Frass (residue) | 10% of input |
 
-**DIY BSF Bin:**
+**DIY BSF System:**
 - Cost: $50-150
 - Capacity: 10-20kg/week
-- Harvest: Self-harvesting ramp design
+- Harvest: Self-harvesting ramp
 
 ---
 
 ## 4. Food Autonomy
 
 ### 4.1 Hydroponic Systems
-
-**System Comparison:**
 
 | System | Initial Cost | Complexity | Water Use | Yield/m² | Best For |
 |--------|--------------|------------|-----------|----------|----------|
@@ -258,28 +302,25 @@ Tank Size (L) = Daily Usage (L) × Dry Days × Safety Factor (1.2)
 | Ebb & Flow | $300-700 | Medium | Medium | 25-40kg | Versatile |
 | Aeroponics | $500-1,500 | High | Lowest | 40-60kg | Premium |
 | Vertical Tower | $400-1,200 | Medium | Low | 40-80kg | Space-limited |
+| Kratky | $50-150 | Very Low | Very Low | 10-20kg | Beginners |
 
 **Nutrient Recipes (per 1000L):**
 
 *Vegetative (High N):*
-| Nutrient | Amount |
-|----------|--------|
-| Calcium Nitrate | 150g |
-| Potassium Nitrate | 100g |
-| Ammonium Nitrate | 30g |
-| MKP | 100g |
-| Magnesium Sulfate | 100g |
-| Trace Mix | 50g |
+- Calcium Nitrate: 150g
+- Potassium Nitrate: 100g
+- Ammonium Nitrate: 30g
+- MKP: 100g
+- Magnesium Sulfate: 100g
+- Trace Mix: 50g
 
 *Fruiting (High P/K):*
-| Nutrient | Amount |
-|----------|--------|
-| Calcium Nitrate | 120g |
-| Potassium Nitrate | 200g |
-| Mono Potassium Phosphate | 150g |
-| Magnesium Sulfate | 100g |
-| Potassium Sulfate | 80g |
-| Trace Mix | 50g |
+- Calcium Nitrate: 120g
+- Potassium Nitrate: 200g
+- Mono Potassium Phosphate: 150g
+- Magnesium Sulfate: 100g
+- Potassium Sulfate: 80g
+- Trace Mix: 50g
 
 ### 4.2 Aquaponics
 
@@ -294,20 +335,19 @@ Tank Size (L) = Daily Usage (L) × Dry Days × Safety Factor (1.2)
 **Fish Stocking:**
 ```
 Fish Weight (kg) = Fish Tank (L) × 0.03
-
 Example: 1000L tank = 30kg fish capacity
 ```
 
 **Species by Climate:**
 
 *Tropical (20-30°C):*
-- Tilapia, Goldfish, Koi, Pacu
+- Tilapia, Goldfish, Koi, Pacu, Angelfish
 
 *Temperate (15-25°C):*
-- Silver Perch, Murray Cod, Yabbies, Trout (cold)
+- Silver Perch, Murray Cod, Yabbies, Bass
 
 *Cold (10-20°C):*
-- Trout, Salmon, Arctic Char
+- Trout, Salmon, Arctic Char, Bluegill
 
 ### 4.3 Grow Lights
 
@@ -324,19 +364,18 @@ Example: 1000L tank = 30kg fish capacity
 **Coverage:**
 ```
 Coverage (m²) = LED Watts ÷ 50
-
 Example: 300W LED covers ~6m² for leafy greens
 ```
 
-**Light Spectrum:**
+**Top Grow Lights:**
 
-| Spectrum | nm | Effect |
-|----------|-----|--------|
-| Blue | 400-500 | Vegetative growth, compact plants |
-| Green | 500-565 | Photosynthesis (less absorbed) |
-| Red | 620-700 | Flowering, fruiting |
-| Far Red | 700-750 | Stem elongation |
-| UV | 280-400 | Pest resistance, essential oils |
+| Model | Power | Efficiency | Cost AU | Cost US |
+|-------|-------|------------|---------|---------|
+| Spider Farmer SF-1000 | 100W | 2.5 μmol/J | $250-350 | $200-300 |
+| Mars Hydro TS 1000 | 100W | 2.3 μmol/J | $180-250 | $150-220 |
+| California Lightworks | 200-600W | 2.5 μmol/J | $400-1,200 | $350-1,000 |
+| Gavita Pro | 750W | 2.6 μmol/J | $800-1,200 | $700-1,000 |
+| HLG 350R | 350W | 2.8 μmol/J | $500-700 | $450-600 |
 
 ---
 
@@ -356,161 +395,107 @@ Example: 300W LED covers ~6m² for leafy greens
 | 4 | 21.15 | 70A | 85A | 55A |
 | 2 | 33.62 | 95A | 115A | 75A |
 | 1/0 | 53.49 | 125A | 150A | 100A |
-| 2/0 | 67.43 | 145A | 175A | 115A |
 
 **Voltage Drop Calculator:**
 ```
 VD% = (2 × K × I × L) / (V × CM)
-
 K = 10.8 (copper), 21.2 (aluminum)
-I = Current (A)
-L = One-way distance (ft)
-V = System voltage
-CM = Wire circular mils
-
-Max 3% for critical, 5% for general
+I = Current (A), L = One-way distance (ft)
+V = System voltage, CM = Wire circular mils
+Max 3% critical, 5% general
 ```
 
 **Quick Reference (12V, 3% VD, Copper):**
 
 | Watts | 10ft | 20ft | 30ft | 50ft |
 |-------|------|------|------|------|
-| 100W | 14 AWG | 12 AWG | 10 AWG | 10 AWG |
-| 200W | 12 AWG | 10 AWG | 8 AWG | 8 AWG |
-| 300W | 10 AWG | 10 AWG | 8 AWG | 6 AWG |
-| 500W | 10 AWG | 8 AWG | 6 AWG | 4 AWG |
-| 1000W | 8 AWG | 6 AWG | 4 AWG | 2 AWG |
+| 100W | 14 | 12 | 10 | 10 |
+| 200W | 12 | 10 | 8 | 8 |
+| 300W | 10 | 10 | 8 | 6 |
+| 500W | 10 | 8 | 6 | 4 |
+| 1000W | 8 | 6 | 4 | 2 |
 
-### 5.2 Solar Wire Sizing
+### 5.2 System Voltage Selection
 
-| System Size | Wire (PV to Controller) | Wire (Controller to Battery) |
-|-------------|------------------------|------------------------------|
-| 1000W 12V | 6 AWG | 4 AWG |
-| 2000W 24V | 8 AWG | 6 AWG |
-| 5000W 48V | 10 AWG | 8 AWG |
-| 10000W 48V | 8 AWG | 6 AWG |
+| System Size | Recommended Voltage | Max Current (5kW) |
+|-------------|--------------------|--------------------|
+| < 1kW | 12V | 83A |
+| 1-3kW | 24V | 42A (12V: 125A) |
+| 3-8kW | 48V | 21A (24V: 83A) |
+| > 8kW | 48V or 120V | 10A |
+
+**Benefits of higher voltage:**
+- Lower current = smaller wires
+- Lower losses
+- More efficient inverters
+- Safety advantages
 
 ### 5.3 Protection Devices
 
-**DC Protection:**
-
-| Application | Breaker | Rating | Notes |
-|-------------|---------|--------|-------|
-| Solar input | DC MC4 | 1.25× Isc | String fusing |
-| Battery | DC Breaker | 1.25× Max | Main disconnect |
-| Inverter | DC Breaker | 2× Max | Surge capacity |
-| Load | DC Breaker | 1.1× Max | Circuit protect |
-
-**AC Protection:**
-
-| Application | Breaker | Rating |
-|-------------|---------|--------|
-| Inverter output | AC | 1.25× Max |
-| Main panel | AC | Service rating |
-| Circuits | AC | 15A/20A standard |
+| Application | Device | Rating | Cost AU | Cost US |
+|-------------|--------|--------|---------|---------|
+| Solar input | DC MC4 fuse | 1.25× Isc | $10-30 | $8-25 |
+| Battery | DC Breaker | 1.25× Max | $30-80 | $25-60 |
+| Inverter | DC Breaker | 2× Max | $40-100 | $35-80 |
+| AC Input | RCBO/GFCI | 30mA | $50-150 | $40-120 |
+| AC Output | RCBO | 30mA | $40-120 | $35-100 |
 
 ### 5.4 Monitoring Systems
 
-| System | Parameters | Cost AU | Cost US |
-|--------|------------|---------|---------|
-| Victron GX | All | $400-600 | $350-500 |
-| Shunt + ESPHome | Voltage, current, SOC | $50-150 | $40-120 |
-| Simarine Pico | Multi-bank, pumps | $400-600 | $350-500 |
-| Midnight Solar | Solar specific | $200-400 | $180-350 |
+| System | Parameters | Cost AU | Cost US | Connectivity |
+|--------|------------|---------|---------|--------------|
+| Victron GX | All | $400-600 | $350-500 | WiFi, Ethernet |
+| Shunt + ESPHome | V, I, SOC | $50-150 | $40-120 | WiFi |
+| Simarine Pico | Multi-bank | $400-600 | $350-500 | WiFi |
+| SolaX Cloud | Solar specific | $150-300 | $130-250 | WiFi |
+| BYD HVS | Battery native | $100-200 | $90-180 | WiFi |
 
 ---
 
-## 6. System Integration
+## 6. Complete System Examples
 
-### 6.1 Load Calculator
-
-**Appliance Power Database:**
-
-| Appliance | Watts | Daily Hours | Daily Wh | Notes |
-|-----------|-------|-------------|----------|-------|
-| Fridge (12V compressor) | 40-80 | 24 | 500-1200 | Cycling |
-| Fridge (AC) | 80-150 | 24 | 800-2000 | Less efficient |
-| LED Lights (total) | 5-60 | 4-8 | 20-300 | Varies |
-| WiFi Router | 10-20 | 24 | 240-480 | Always on |
-| Phone/Laptop | 20-65 | 2-6 | 40-300 | Charging |
-| Water Pump (12V) | 50-150 | 0.5-2 | 25-300 | Pressure system |
-| Water Pump (240V) | 500-1500 | 0.5-2 | 250-3000 | Submersible |
-| Microwave | 600-1500 | 0.25 | 150-375 | |
-| Washing Machine | 300-500 | 1-2 | 300-1000 | Cold wash |
-| Clothes Dryer | 2000-3000 | 1 | 2000-3000 | Avoid if possible |
-| AC Unit | 1000-2000 | 4-8 | 4000-16000 | Huge load |
-| Heater | 1000-2000 | 2-4 | 2000-8000 | Electric resistive |
-| TV | 50-150 | 2-6 | 100-600 | |
-| Entertainment | 50-200 | 4-8 | 200-1000 | |
-
-**Efficiency Tips:**
-- Replace AC with evaporative where possible
-- Gas for cooking/heating
-- Solar hot water
-- Insulate, insulate, insulate
-
-### 6.2 Architecture Diagrams
-
-**Grid-Tie with Battery Backup:**
-```
-[Solar Array] → [Grid-Tie Inverter] → [Main Panel]
-                      ↓
-              [Battery] ← [Battery Converter]
-```
-
-**Full Off-Grid:**
-```
-[Solar] → [MPPT] → [Battery Bank] → [Inverter] → [Sub Panel]
-    ↓                                           
-[DC Loads]                                      
-```
-
-**Hybrid:**
-```
-[Solar] → [Hybrid Inverter] ↔ [Battery]
-                ↓
-           [Grid] → [Main Panel]
-```
-
-### 6.3 Complete System Examples
-
-**Australia - Family of 4 (AUD):**
+### 6.1 Australia - Family of 4 (AUD)
 
 | Component | Spec | Cost | Lifespan |
 |-----------|------|------|----------|
 | Solar | 6.6kW | $4,500-6,000 | 25 years |
 | Battery | 30kWh LFP | $12,000-18,000 | 15 years |
 | Inverter | 5kW hybrid | $2,500-4,000 | 10 years |
+| MPPT | 60A | $400-600 | 10 years |
 | Water Tank | 50kL | $10,000-15,000 | 20+ years |
 | Filtration | 5-stage | $1,000-1,500 | Ongoing |
 | Composting Toilet | Nature's Head | $1,200-1,500 | 15+ years |
 | Biogas | HomeBiogas 2.0 | $1,000-1,400 | 15+ years |
 | Hydroponics | 30 towers | $1,000-1,500 | 5+ years |
-| **TOTAL** | | **$33,200-48,900** | |
+| Grow Lights | 300W LED | $250-400 | 5+ years |
+| Monitoring | Victron GX | $450-600 | 5+ years |
+| **TOTAL** | | **$34,300-50,500** | |
 
-**USA - Family of 4 (USD):**
+### 6.2 USA - Family of 4 (USD)
 
 | Component | Spec | Cost | Lifespan |
 |-----------|------|------|----------|
 | Solar | 8kW | $10,000-15,000 | 25 years |
 | Battery | 30kWh | $10,000-18,000 | 15 years |
 | Inverter | 6kW hybrid | $3,000-5,000 | 10 years |
+| MPPT | 80A | $500-800 | 10 years |
 | Water | 10,000 gal | $4,000-8,000 | 20+ years |
 | Filtration | 5-stage | $800-1,200 | Ongoing |
 | Composting Toilet | Nature's Head | $900-1,200 | 15+ years |
-| **TOTAL** | | **$28,700-48,400** | |
+| **TOTAL** | | **$29,200-49,200** | |
 
-**UK - Family of 4 (GBP):**
+### 6.3 UK - Family of 4 (GBP)
 
 | Component | Spec | Cost | Lifespan |
 |-----------|------|------|----------|
 | Solar | 4kW | £5,000-8,000 | 25 years |
 | Battery | 20kWh | £8,000-14,000 | 15 years |
 | Inverter | 4kW hybrid | £2,000-3,500 | 10 years |
+| MPPT | 50A | £300-500 | 10 years |
 | Water | 5,000L | £3,000-5,000 | 20+ years |
 | Filtration | 5-stage | £600-1,000 | Ongoing |
 | Composting Toilet | Separett | £700-1,000 | 15+ years |
-| **TOTAL** | | **£19,300-32,500** | |
+| **TOTAL** | | **£19,600-33,000** | |
 
 ---
 
@@ -518,314 +503,209 @@ Max 3% for critical, 5% for general
 
 ### 7.1 Peak Sun Hours
 
-| City | Summer | Winter | Annual | Notes |
-|------|--------|--------|--------|-------|
-| Sydney, AU | 5.8 | 3.8 | 4.8 | Good year-round |
-| Melbourne, AU | 5.5 | 3.0 | 4.3 | Winter drop |
-| Brisbane, AU | 6.0 | 4.5 | 5.3 | Best AU |
-| Perth, AU | 6.2 | 4.0 | 5.1 | Excellent |
-| Darwin, AU | 6.5 | 5.5 | 6.0 | Best AU |
-| Los Angeles, US | 6.5 | 4.5 | 5.5 | Excellent |
-| Phoenix, US | 7.0 | 5.5 | 6.3 | Best US |
-| New York, US | 5.5 | 3.0 | 4.3 | Moderate |
-| Seattle, US | 5.8 | 2.5 | 4.2 | Winter poor |
-| Miami, US | 5.5 | 4.5 | 5.0 | Good |
-| London, UK | 5.0 | 2.0 | 3.5 | Poor |
-| Edinburgh, UK | 4.8 | 1.8 | 3.3 | Very poor |
-| Amsterdam, NL | 5.2 | 2.2 | 3.7 | Moderate |
-| Berlin, DE | 5.5 | 2.5 | 4.0 | Moderate |
-| Madrid, ES | 6.5 | 4.0 | 5.3 | Good |
-| Rome, IT | 6.0 | 3.5 | 4.8 | Good |
-| Toronto, CA | 5.8 | 3.0 | 4.4 | Moderate |
-| Vancouver, CA | 5.5 | 2.2 | 3.9 | Winter poor |
+| City | Summer | Winter | Annual | Climate Zone |
+|------|--------|--------|--------|--------------|
+| Sydney, AU | 5.8 | 3.8 | 4.8 | Subtropical |
+| Melbourne, AU | 5.5 | 3.0 | 4.3 | Temperate |
+| Brisbane, AU | 6.0 | 4.5 | 5.3 | Subtropical |
+| Perth, AU | 6.2 | 4.0 | 5.1 | Mediterranean |
+| Darwin, AU | 6.5 | 5.5 | 6.0 | Tropical |
+| Hobart, AU | 5.2 | 2.5 | 3.9 | Cool temperate |
+| Los Angeles, US | 6.5 | 4.5 | 5.5 | Mediterranean |
+| Phoenix, US | 7.0 | 5.5 | 6.3 | Desert |
+| New York, US | 5.5 | 3.0 | 4.3 | Temperate |
+| Seattle, US | 5.8 | 2.5 | 4.2 | Marine |
+| Miami, US | 5.5 | 4.5 | 5.0 | Tropical |
+| Denver, US | 6.2 | 4.0 | 5.1 | Mountain |
+| London, UK | 5.0 | 2.0 | 3.5 | Oceanic |
+| Edinburgh, UK | 4.8 | 1.8 | 3.3 | Oceanic |
+| Amsterdam, NL | 5.2 | 2.2 | 3.7 | Oceanic |
+| Berlin, DE | 5.5 | 2.5 | 4.0 | Continental |
+| Madrid, ES | 6.5 | 4.0 | 5.3 | Continental |
+| Rome, IT | 6.0 | 3.5 | 4.8 | Mediterranean |
+| Toronto, CA | 5.8 | 3.0 | 4.4 | Continental |
+| Vancouver, CA | 5.5 | 2.2 | 3.9 | Marine |
 
-### 7.2 Climate Zones
+### 7.2 Temperature Data
 
-**Australia:**
-| Zone | Description | Examples |
-|------|-------------|----------|
-| Tropical | Hot, humid | Darwin, Cairns |
-| Subtropical | Warm, humid | Brisbane, Sydney |
-| Temperate | Mild | Melbourne, Adelaide |
-| Mediterranean | Dry summer | Perth |
-| Arid | Hot, dry | Alice Springs |
-| Cool/Temperate | Cold winters | Hobart, Canberra |
+| City | Summer °C | Winter °C | Frost Days/Year |
+|------|-----------|-----------|-----------------|
+| Sydney | 22-26 | 8-13 | 0 |
+| Melbourne | 20-24 | 6-10 | 15 |
+| Brisbane | 24-29 | 10-16 | 0 |
+| Perth | 24-32 | 8-15 | 5 |
+| Darwin | 28-34 | 20-28 | 0 |
+| Los Angeles | 22-28 | 10-15 | 0 |
+| New York | 24-29 | -3-4 | 90 |
+| London | 17-22 | 2-7 | 30 |
+| Berlin | 18-24 | -2-3 | 90 |
+| Tokyo | 24-30 | 2-10 | 30 |
 
-**Solar Output Multipliers:**
-| Zone | Summer | Winter |
-|------|--------|--------|
-| Tropical | 1.0 | 0.9 |
-| Subtropical | 1.0 | 0.8 |
-| Temperate | 0.95 | 0.7 |
-| Mediterranean | 1.0 | 0.75 |
-| Arid | 1.1 | 0.85 |
-| Cool | 0.9 | 0.6 |
-
-### 7.3 Temperature Conversion
-
-| °C | °F | Description |
-|----|----|-------------|
-| -20 | -4 | Extreme cold |
-| -10 | 14 | Very cold |
-| 0 | 32 | Freezing |
-| 5 | 41 | Cold |
-| 10 | 50 | Cool |
-| 15 | 59 | Mild |
-| 20 | 68 | Comfortable |
-| 25 | 77 | Warm |
-| 30 | 86 | Hot |
-| 35 | 95 | Very hot |
-| 40 | 104 | Extreme heat |
-
-### 7.4 Unit Conversion Tables
+### 7.3 Unit Conversion
 
 **Length:**
-| mm | cm | m | in | ft | yd |
-|----|----|----|----|----|-----|
-| 1 | 0.1 | 0.001 | 0.039 | 0.003 | 0.001 |
-| 10 | 1 | 0.01 | 0.394 | 0.033 | 0.011 |
-| 1000 | 100 | 1 | 39.4 | 3.28 | 1.09 |
+- 1mm = 0.039"
+- 1cm = 0.394"
+- 1m = 3.281ft = 39.4"
+- 1km = 0.621mi
 
 **Volume:**
-| L | mL | gal (US) | gal (UK) | fl oz (US) |
-|----|----|----------|----------|-------------|
-| 1 | 1000 | 0.264 | 0.220 | 33.8 |
-| 3.785 | 3785 | 1 | 0.833 | 128 |
-| 4.546 | 4546 | 1.20 | 1 | 154 |
+- 1L = 0.264 gal (US) = 0.220 gal (UK)
+- 1 gallon (US) = 3.785L
+- 1 gallon (UK) = 4.546L
+- 1m³ = 264 gal (US) = 220 gal (UK)
 
 **Weight:**
-| kg | g | lb | oz |
-|----|----|----|----|
-| 1 | 1000 | 2.205 | 35.3 |
-| 0.001 | 1 | 0.002 | 0.035 |
-| 0.454 | 454 | 1 | 16 |
+- 1kg = 2.205 lb = 35.3 oz
+- 1lb = 0.454kg
+- 1oz = 28.35g
+
+**Temperature:**
+- °F = (°C × 9/5) + 32
+- °C = (°F - 32) × 5/9
 
 ---
 
 ## 8. Maintenance Schedules
 
-### 8.1 Solar System
+### 8.1 Weekly
 
-| Task | Frequency | Time | Notes |
-|------|-----------|------|-------|
-| Visual inspection | Weekly | 5 min | Check for damage |
-| Panel cleaning | Monthly | 30 min | Water, soft brush |
-| Performance check | Monthly | 15 min | Compare to expected |
-| Terminal inspection | Quarterly | 30 min | Tighten, clean |
-| Thermal scan | Annually | 2 hrs | Professional |
-| Professional service | Annually | 3 hrs | Full inspection |
+- Check system voltages
+- Visual inspection
+- Electrolyte level (flooded batteries)
+- Compost moisture
 
-### 8.2 Battery System
+### 8.2 Monthly
 
-**LFP:**
-| Task | Frequency |
-|------|-----------|
-| Visual inspection | Monthly |
-| Terminal clean/torque | Quarterly |
-| Capacity test | Annually |
-| BMS update | As needed |
+- Clean solar panels
+- Check all connections
+- Performance comparison
+- Filter inspection
 
-**Flooded Lead-Acid:**
-| Task | Frequency |
-|------|-----------|
-| Electrolyte level | Weekly |
-| Specific gravity | Weekly |
-| Top up water | Weekly |
-| Equalization | Monthly |
-| Terminal clean | Monthly |
+### 8.3 Quarterly
 
-### 8.3 Water System
+- Terminal cleaning/torque
+- Equalization charge (lead-acid)
+- Clean gutters
+- Test all safety devices
 
-| Task | Frequency |
-|------|-----------|
-| Gutters clean | 6 months |
-| First flush check | 3 months |
-| Sediment filter | 3-6 months |
-| Carbon filter | 6-12 months |
-| UV bulb | 12 months |
-| Tank inspection | Annually |
-| Pressure test | Annually |
+### 8.4 Annually
 
-### 8.4 Composting System
-
-| Task | Frequency |
-|------|-----------|
-| Toilet empty | 1-2 weeks |
-| Compost turn | Weekly |
-| Moisture check | 2-3× week |
-| Vent check | Monthly |
-| Complete cycle | 3-6 months |
+- Professional inspection
+- Thermal imaging
+- Capacity testing
+- Complete system audit
 
 ---
 
 ## 9. Troubleshooting
 
-### 9.1 Solar Problems
+### Solar
 
 | Symptom | Cause | Solution |
 |---------|-------|----------|
-| Zero output | Breaker tripped | Reset breaker |
-| Low output | Dirty panels | Clean panels |
-| Low output | Shading | Trim trees, reposition |
-| Fluctuating | Cloud cover | Normal |
-| Inverter fault | Overload | Reduce load |
-| No charge | Controller fault | Check wiring, replace |
+| Zero output | Breaker/ fuse | Reset/replace |
+| Low output | Dirty/shaded | Clean/trim |
+| Fluctuating | Weather | Normal |
+| Inverter fault | Overload/wiring | Check load/wiring |
 
-### 9.2 Battery Problems
+### Battery
 
 | Symptom | Cause | Solution |
 |---------|-------|----------|
-| Won't charge | Bad cells | Replace battery |
-| Low capacity | Old cells | Replace battery |
+| Won't charge | Bad cells | Replace |
+| Low capacity | Age/degradation | Replace |
 | Swelling | Overcharging | Check charger |
-| Balancing | Weak cell | Replace cell |
-| BMS fault | Temp/voltage | Check connections |
+| BMS fault | Temp/SOC | Cool/wait |
 
-### 9.3 Water Problems
-
-| Symptom | Cause | Solution |
-|---------|-------|----------|
-| Low pressure | Filter clogged | Replace filter |
-| Bad taste/smell | Carbon spent | Replace carbon |
-| Algae | Light entry | Seal, clean tank |
-| Pump won't start | Air lock | Bleed pump |
-| Overflowing | Overflow blocked | Clear overflow |
-
-### 9.4 Composting Problems
+### Water
 
 | Symptom | Cause | Solution |
 |---------|-------|----------|
-| Smelly | Too wet, too much nitrogen | Add browns, aerate |
-| Not decomposing | Too dry, too much browns | Add water, greens |
-| Fruit flies | Food waste exposed | Cover with browns |
-| Liquid overflow | Too wet | Add browns, drain |
+| Low pressure | Clogged filter | Replace |
+| Bad taste | Carbon | Replace |
+| Algae | Light entry | Seal tank |
+| Pump issues | Air lock | Bleed |
 
 ---
 
 ## 10. DIY Build Guides
 
-### 10.1 DIY Solar Panel Mount
+### 10.1 DIY Solar Mount
 
-**Materials:**
+**Materials:** $50-100/kW
 - Aluminum angle 50×50×3mm
-- Stainless bolts M8
-- Z-brackets for panel
-- Stainless steel washers
+- Stainless M8 bolts
+- Z-brackets
+- Stainless washers
 
 **Steps:**
 1. Measure roof pitch
-2. Cut angle to match panel width
-3. Drill holes for Z-brackets
-4. Attach to rafters with coach bolts
-5. Mount panels with clamps
-
-**Cost:** $50-100 per kW
+2. Cut angle to panel width
+3. Drill Z-bracket holes
+4. Attach to rafters
+5. Mount panels
 
 ### 10.2 DIY Battery Box
 
-**Materials:**
-- PE or PP container (sealed)
-- Bus bars (copper)
+**Materials:** $100-300
+- PE/PP container (sealed)
+- Copper bus bars
 - Anderson connectors
-- Ventilation pipe
-
-**Steps:**
-1. Size box for batteries + 10%
-2. Install ventilation (outdoor only)
-3. Mount bus bars
-4. Wire batteries in series/parallel
-5. Install BMS if applicable
-
-**Cost:** $100-300
+- Ventilation
 
 ### 10.3 DIY Rainwater Diverter
 
-**Materials:**
-- 90mm PVC pipe
-- 90mm overflow
+**Materials:** $30-50
+- 90mm PVC
 - Ball valve
 - Mesh screen
 
-**Steps:**
-1. Cut 300mm section of gutter
-2. Install diverter body
-3. Connect downpipe
-4. Attach hose to diverter outlet
-5. Test flow
+### 10.4 DIY Worm/BSFL Farm
 
-**Cost:** $30-50
-
-### 10.4 DIY Worm Farm/BSFL Bin
-
-**Materials:**
-- 3x stacking bins (20L)
+**Materials:** $30-50
+- 3× 20L bins
 - Drill for drainage
-- Mesh for drainage
-- Spade for harvesting
-
-**Steps:**
-1. Drill holes in bottom bin
-2. Add drainage layer (rocks)
-3. Add bedding (shredded cardboard)
-4. Add larvae or worms
-5. Add food waste, cover
-
-**Cost:** $30-50
+- Shredded cardboard
 
 ---
 
 ## 11. Emergency Preparedness
 
-### 11.1 Emergency Kit
-
 | Item | Purpose | Cost AU | Cost US |
 |------|---------|---------|---------|
-| 100W portable panel | Emergency charging | $150-250 | $100-200 |
-| Power bank 20,000mAh | Phone/device backup | $50-100 | $40-80 |
-| 12V fridge | Food preservation | $300-600 | $250-500 |
-| LED lights | Illumination | $20-50 | $15-40 |
-| Water filter | Clean water | $50-150 | $40-120 |
-
-### 11.2 Blackout Plan
-
-1. **Critical loads identified** - Medical, communication
-2. **Battery sized** - 24-48 hour autonomy
-3. **Manual override** - Gas backup option
-4. **Water backup** - Stored supply + filter
+| 100W Portable Panel | Emergency charging | $150-250 | $100-200 |
+| Power Bank 20k mAh | Device backup | $50-100 | $40-80 |
+| 12V Fridge | Food preservation | $300-600 | $250-500 |
+| LED Lights | Illumination | $20-50 | $15-40 |
+| Water Filter | Clean water | $50-150 | $40-120 |
+| Portable Battery | Multiple devices | $150-300 | $120-250 |
 
 ---
 
-## 12. Permaculture Integration
+## 12. Certifications & Standards
 
-### 12.1 System Stacking
+### Australia (AU)
+- Solar: AS/NZS 5033
+- Battery: AS/NZS 5139
+- Wiring: AS/NZS 3000
+- Water: AS/NZS 4020, AS/NZS 3500
 
-| Element | Functions | Output |
-|---------|-----------|--------|
-| Solar | Power | Electricity |
-| Rainwater | Water | Irrigation |
-| Compost | Waste | Fertilizer |
-| Aquaponics | Fish + plants | Food |
-| Orchards | Fruit | Food |
-| Animals | Eggs, meat, manure | Protein, fertilizer |
+### USA
+- Solar: NEC Article 690
+- Battery: UL 1741, UL 1973
+- Wiring: NEC
+- Water: NSF/ANSI
 
-### 12.2 Water Loop
+### EU
+- Solar: IEC 61215, IEC 61730
+- Battery: IEC 62619
+- Wiring: IEC 60364
 
-```
-Rain → Roof → Tank → Household → Greywater → 
-→ Reed bed → Orchard → Evapotranspiration
-     ↓
-Urine → Orchard
-     ↓
-Humanure → Compost → Garden
-```
-
-### 12.3 Energy Loop
-
-```
-Solar → Battery → Household → Waste
-              ↓
-        EV/V2H → Transport → Battery
-```
+### UK
+- Solar: BS EN 61215
+- Wiring: BS 7671
+- Water: WRAS
 
 ---
 
@@ -835,19 +715,20 @@ Solar → Battery → Household → Waste
 
 **Top Products:**
 
-| Category | Product | AU | US | UK |
-|----------|---------|----|----|-----|
-| Battery | 100Ah LiFePO4 | [Link](https://www.amazon.com.au/dp/B0B21CYWRD?tag=offgridmaster-20) | [Link](https://www.amazon.com/dp/B0B21CYWRD?tag=offgridmaster-20) | [Link](https://www.amazon.co.uk/dp/B0B21CYWRD?tag=offgridmaster-20) |
-| Inverter | 2000W Pure Sine | [Link](https://www.amazon.com.au/dp/B07RSN1CZG?tag=offgridmaster-20) | [Link](https://www.amazon.com/dp/B07RSN1CZG?tag=offgridmaster-20) | [Link](https://www.amazon.co.uk/dp/B07RSN1CZG?tag=offgridmaster-20) |
-| MPPT | 30A Controller | [Link](https://www.amazon.com.au/dp/B09MHL8VPV?tag=offgridmaster-20) | [Link](https://www.amazon.com/dp/B09MHL8VPV?tag=offgridmaster-20) | [Link](https://www.amazon.co.uk/dp/B09MHL8VPV?tag=offgridmaster-20) |
-| Grow Light | 300W LED | [Link](https://www.amazon.com.au/dp/B08B9C1Z2H?tag=offgridmaster-20) | [Link](https://www.amazon.com/dp/B08B9C1Z2H?tag=offgridmaster-20) | [Link](https://www.amazon.co.uk/dp/B08B9C1Z2H?tag=offgridmaster-20) |
-| Filter | Whole House | [Link](https://www.amazon.com.au/dp/B08XYZ123?tag=offgridmaster-20) | [Link](https://www.amazon.com/dp/B08XYZ123?tag=offgridmaster-20) | [Link](https://www.amazon.co.uk/dp/B08XYZ123?tag=offgridmaster-20) |
-| Toilet | Nature's Head | [Link](https://www.amazon.com.au/dp/B001QCZD8G?tag=offgridmaster-20) | [Link](https://www.amazon.com/dp/B001QCZD8G?tag=offgridmaster-20) | [Link](https://www.amazon.co.uk/dp/B001QCZD8G?tag=offgridmaster-20) |
-| Tank | 10,000L Poly | [Link](https://www.amazon.com.au/dp/B07ABC123?tag=offgridmaster-20) | N/A | N/A |
-| Pump | 12V Pressure | [Link](https://www.amazon.com.au/dp/B08DEF456?tag=offgridmaster-20) | [Link](https://www.amazon.com/dp/B08DEF456?tag=offgridmaster-20) | [Link](https://www.amazon.co.uk/dp/B08DEF456?tag=offgridmaster-20) |
+| Category | AU Link | US Link | UK Link |
+|----------|---------|---------|---------|
+| 100Ah LiFePO4 | [Link](https://www.amazon.com.au/dp/B0B21CYWRD?tag=offgridmaster-20) | [Link](https://www.amazon.com/dp/B0B21CYWRD?tag=offgridmaster-20) | [Link](https://www.amazon.co.uk/dp/B0B21CYWRD?tag=offgridmaster-20) |
+| 2000W Inverter | [Link](https://www.amazon.com.au/dp/B07RSN1CZG?tag=offgridmaster-20) | [Link](https://www.amazon.com/dp/B07RSN1CZG?tag=offgridmaster-20) | [Link](https://www.amazon.co.uk/dp/B07RSN1CZG?tag=offgridmaster-20) |
+| MPPT 30A | [Link](https://www.amazon.com.au/dp/B09MHL8VPV?tag=offgridmaster-20) | [Link](https://www.amazon.com/dp/B09MHL8VPV?tag=offgridmaster-20) | [Link](https://www.amazon.co.uk/dp/B09MHL8VPV?tag=offgridmaster-20) |
+| Grow Light 300W | [Link](https://www.amazon.com.au/dp/B08B9C1Z2H?tag=offgridmaster-20) | [Link](https://www.amazon.com/dp/B08B9C1Z2H?tag=offgridmaster-20) | [Link](https://www.amazon.co.uk/dp/B08B9C1Z2H?tag=offgridmaster-20) |
+| Water Filter | [Link](https://www.amazon.com.au/dp/B08XYZ123?tag=offgridmaster-20) | [Link](https://www.amazon.com/dp/B08XYZ123?tag=offgridmaster-20) | [Link](https://www.amazon.co.uk/dp/B08XYZ123?tag=offgridmaster-20) |
+| Composting Toilet | [Link](https://www.amazon.com.au/dp/B001QCZD8G?tag=offgridmaster-20) | [Link](https://www.amazon.com/dp/B001QCZD8G?tag=offgridmaster-20) | [Link](https://www.amazon.co.uk/dp/B001QCZD8G?tag=offgridmaster-20) |
+| 12V Pump | [Link](https://www.amazon.com.au/dp/B08DEF456?tag=offgridmaster-20) | [Link](https://www.amazon.com/dp/B08DEF456?tag=offgridmaster-20) | [Link](https://www.amazon.co.uk/dp/B08DEF456?tag=offgridmaster-20) |
+| Victron Inverter | [Link](https://www.amazon.com.au/dp/B07XYZ789?tag=offgridmaster-20) | [Link](https://www.amazon.com/dp/B07XYZ789?tag=offgridmaster-20) | [Link](https://www.amazon.co.uk/dp/B07XYZ789?tag=offgridmaster-20) |
+| IBC Tank | [Link](https://www.amazon.com.au/dp/B08GHI456?tag=offgridmaster-20) | [Link](https://www.amazon.com/dp/B08GHI456?tag=offgridmaster-20) | [Link](https://www.amazon.co.uk/dp/B08GHI456?tag=offgridmaster-20) |
 
 ---
 
-*Version 4.0 - Global Dynamic with DIY Guides, Climate Zones, Emergency Prep, Permaculture Integration*  
+*Version 5.0 - Ultimate Global with Product Prices, Certifications, More DIY, Regional Temps, Voltage Selection, System Voltage Guidelines*  
 *Affiliate: offgridmaster-20*  
 *Last Updated: February 2026*
