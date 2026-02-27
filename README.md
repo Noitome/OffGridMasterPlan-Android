@@ -49,90 +49,19 @@ OffGridMasterPlan-Android/
 ### Quick Build
 
 ```bash
-# Navigate to project directory
 cd OffGridMasterPlan-Android
-
-# Create gradle wrapper
 gradle wrapper
-
-# Build debug APK
 ./gradlew assembleDebug
-
-# APK location: app/build/outputs/apk/debug/app-debug.apk
-```
-
-### Release Build
-
-```bash
-./gradlew assembleRelease
+# APK: app/build/outputs/apk/debug/app-debug.apk
 ```
 
 ## Web App Integration
 
 The app loads the PWA from:
-1. **Primary:** `https://offgridmasterplan.lovable.app` (when online)
-2. **Fallback:** `file:///android_asset/public/index.html` (offline)
+- **Online:** `https://offgridmasterplan.lovable.app`
+- **Offline:** `file:///android_asset/public/index.html`
 
-### Bundling Web App Assets
-
-To enable offline use:
-
-1. Build the Lovable app: `npm run build`
-2. Copy contents of `dist/` to `app/src/main/assets/public/`
-
-```bash
-# Example (from Lovable project)
-npm run build
-cp -r dist/* ../OffGridMasterPlan-Android/app/src/main/assets/public/
-```
-
-## Capacitor Integration
-
-This app uses Capacitor 5.7.0. To update web content:
-
-```bash
-npm install @capacitor/cli @capacitor/android
-npx cap sync
-```
-
-## Configuration
-
-### App URL
-Edit `MainActivity.kt` to change the default URL:
-```kotlin
-companion object {
-    private const val APP_URL = "https://offgridmasterplan.lovable.app"
-}
-```
-
-### Deep Linking
-The app handles:
-- `https://offgridmasterplan.lovable.app/*`
-- Custom scheme can be added in AndroidManifest.xml
-
-## Signing for Play Store
-
-1. Create signing key:
-```bash
-keytool -genkey -v -keystore offgridmasterplan.keystore -keyalg RSA -keysize 2048 -validity 10000 -alias offgridmasterplan
-```
-
-2. Configure signing in `app/build.gradle`:
-```groovy
-signingConfigs {
-    release {
-        storeFile file("offgridmasterplan.keystore")
-        storePassword "your_password"
-        keyAlias "offgridmasterplan"
-        keyPassword "your_password"
-    }
-}
-```
-
-3. Build release APK with signing:
-```bash
-./gradlew assembleRelease
-```
+To enable offline mode, build the Lovable app and copy `dist/*` to `app/src/main/assets/public/`
 
 ## License
 
