@@ -23,24 +23,13 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
 
-    - name: Cache Gradle packages
-      uses: actions/cache@v4
+    - name: Setup Gradle
+      uses: gradle/gradle-setup-action@v4
       with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
-
-    - name: Install Gradle
-      run: |
-        wget -q https://services.gradle.org/distributions/gradle-8.2-bin.zip -O /tmp/gradle.zip
-        unzip -q /tmp/gradle.zip -d /opt
-        echo "/opt/gradle-8.2/bin" >> $GITHUB_PATH
+        gradle-version: 8.2
 
     - name: Build debug APK
-      run: /opt/gradle-8.2/bin/gradle assembleDebug --no-daemon
+      run: ./gradlew assembleDebug --no-daemon
 
     - name: Upload debug APK
       uses: actions/upload-artifact@v4
@@ -48,15 +37,3 @@ jobs:
       with:
         name: app-debug.apk
         path: app/build/outputs/apk/debug/app-debug.apk
-
-  notify:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Notify on success
-        if: success()
-        run: echo "✅ Build successful! APK available as artifact."
-      
-      - name: Notify on failure
-        if: failure()
-        run: echo "❌ Build failed. Check logs."
